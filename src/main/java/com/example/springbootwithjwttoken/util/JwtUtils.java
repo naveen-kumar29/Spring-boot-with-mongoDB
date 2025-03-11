@@ -1,14 +1,12 @@
 package com.example.springbootwithjwttoken.util;
 
 
-import com.example.springbootwithjwttoken.model.User;
+import com.example.springbootwithjwttoken.login.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
-import java.util.Base64;
 import java.util.Date;
 
 @Component

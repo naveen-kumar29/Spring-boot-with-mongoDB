@@ -1,4 +1,4 @@
-package com.example.springbootwithjwttoken.dto;
+package com.example.springbootwithjwttoken.login.dto;
 
 public class SignUpRequestDTO {
     private Long id;

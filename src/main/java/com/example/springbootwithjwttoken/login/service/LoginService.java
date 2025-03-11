@@ -1,11 +1,11 @@
-package com.example.springbootwithjwttoken.service;
+package com.example.springbootwithjwttoken.login.service;
 
 
 import com.example.springbootwithjwttoken.common.APIResponse;
-import com.example.springbootwithjwttoken.dto.LoginRequestDTO;
-import com.example.springbootwithjwttoken.dto.SignUpRequestDTO;
-import com.example.springbootwithjwttoken.model.User;
-import com.example.springbootwithjwttoken.repository.LoginRepository;
+import com.example.springbootwithjwttoken.login.dto.LoginRequestDTO;
+import com.example.springbootwithjwttoken.login.dto.SignUpRequestDTO;
+import com.example.springbootwithjwttoken.login.model.User;
+import com.example.springbootwithjwttoken.login.repository.LoginRepository;
 import com.example.springbootwithjwttoken.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,11 @@
-package com.example.springbootwithjwttoken.controller;
+package com.example.springbootwithjwttoken.login.controller;
 
 
 import com.example.springbootwithjwttoken.common.APIResponse;
-import com.example.springbootwithjwttoken.dto.LoginRequestDTO;
-import com.example.springbootwithjwttoken.dto.SignUpRequestDTO;
-import com.example.springbootwithjwttoken.service.LoginService;
+import com.example.springbootwithjwttoken.login.dto.LoginRequestDTO;
+import com.example.springbootwithjwttoken.login.dto.SignUpRequestDTO;
+import com.example.springbootwithjwttoken.login.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

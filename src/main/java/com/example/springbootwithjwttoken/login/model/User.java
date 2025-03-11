@@ -1,4 +1,4 @@
-package com.example.springbootwithjwttoken.model;
+package com.example.springbootwithjwttoken.login.model;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
