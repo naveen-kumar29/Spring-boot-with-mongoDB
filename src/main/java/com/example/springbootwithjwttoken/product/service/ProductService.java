@@ -3,6 +3,7 @@ package com.example.springbootwithjwttoken.product.service;
 
 import com.example.springbootwithjwttoken.common.APIResponse;
 import com.example.springbootwithjwttoken.product.dto.AddProductRequestDTO;
+import com.example.springbootwithjwttoken.product.dto.UpdateProductDTO;
 import com.example.springbootwithjwttoken.product.model.Product;
 import com.example.springbootwithjwttoken.product.repository.ProductRepository;
 import com.example.springbootwithjwttoken.util.CommonUtils;
@@ -112,5 +113,47 @@ public class ProductService {
             apiResponse.setData(null);
         }
         return apiResponse;
+    }
+
+    public APIResponse updateProduct(UpdateProductDTO updateProductDTO) {
+        APIResponse apiResponse = new APIResponse();
+        //validation
+        if(
+                commonUtils.stringValidation(updateProductDTO.getProduct_name()) &&
+                        commonUtils.stringValidation(updateProductDTO.getProduct_description()) &&
+                        commonUtils.intValidation(updateProductDTO.getProduct_price()) &&
+                        commonUtils.intValidation(updateProductDTO.getProduct_quantity()) &&
+                        commonUtils.stringValidation(updateProductDTO.getProduct_brand()) &&
+                        commonUtils.stringValidation(updateProductDTO.getProduct_category()) &&
+                        commonUtils.stringValidation(updateProductDTO.getProduct_status()) &&
+                        commonUtils.stringValidation(updateProductDTO.getProduct_discount())
+        ){
+            //dto to entity
+            Product product = new Product();
+            product.setProduct_id(updateProductDTO.getProduct_id());
+            product.setProduct_name(updateProductDTO.getProduct_name());
+            product.setProduct_description(updateProductDTO.getProduct_description());
+            product.setProduct_price(updateProductDTO.getProduct_price());
+            product.setProduct_quantity(updateProductDTO.getProduct_quantity());
+            product.setProduct_brand(updateProductDTO.getProduct_brand());
+            product.setProduct_category(updateProductDTO.getProduct_category());
+            product.setProduct_status(updateProductDTO.getProduct_status());
+            product.setProduct_discount(updateProductDTO.getProduct_discount());
+            //store entity
+            productRepository.save(product);
+
+            //return
+            apiResponse.setStatus(200);
+            apiResponse.setData(product);
+            apiResponse.setMessage("Data Updated Successfully");
+        }else{
+            apiResponse.setStatus(200);
+            apiResponse.setData(null);
+            apiResponse.setMessage("Missing some information");
+        }
+
+
+        return apiResponse;
+
     }
 }

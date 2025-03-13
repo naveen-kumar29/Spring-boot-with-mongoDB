@@ -2,6 +2,7 @@ package com.example.springbootwithjwttoken.product.controller;
 
 import com.example.springbootwithjwttoken.common.APIResponse;
 import com.example.springbootwithjwttoken.product.dto.AddProductRequestDTO;
+import com.example.springbootwithjwttoken.product.dto.UpdateProductDTO;
 import com.example.springbootwithjwttoken.product.service.ProductService;
 import com.example.springbootwithjwttoken.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,22 @@ public class ProductController {
         String validateToken = token.substring(7);
         if(jwtUtils.validateJwt(validateToken)) {
              apiResponse = productService.getProductFilter(productPrice);
+        }else{
+            apiResponse.setMessage("Unauthorized");
+            apiResponse.setData(null);
+            apiResponse.setStatus(401);
+        }
+
+        return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
+    }
+
+
+    @PutMapping("/product/update")
+    public ResponseEntity<APIResponse> updateProduct(@RequestBody UpdateProductDTO updateProductDTO, @RequestHeader("Authorization") String token){
+        APIResponse apiResponse = new APIResponse();
+        String validateToken = token.substring(7);
+        if(jwtUtils.validateJwt(validateToken)) {
+            apiResponse = productService.updateProduct(updateProductDTO);
         }else{
             apiResponse.setMessage("Unauthorized");
             apiResponse.setData(null);

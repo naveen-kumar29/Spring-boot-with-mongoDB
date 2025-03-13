@@ -7,10 +7,12 @@ import com.example.springbootwithjwttoken.login.dto.SignUpRequestDTO;
 import com.example.springbootwithjwttoken.login.model.User;
 import com.example.springbootwithjwttoken.login.repository.LoginRepository;
 import com.example.springbootwithjwttoken.util.JwtUtils;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class LoginService {
@@ -21,6 +23,8 @@ public class LoginService {
 
     @Autowired
     private JwtUtils jwtUtils;
+    private static String secret = "this_is_my_secret_and_secure_jwt_token_key_here_mdmdmmffffmmfmfmfmfmfmfmfmffmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfmfm";
+
 
 
     public APIResponse signUp(SignUpRequestDTO signUpRequestDTO) {
@@ -58,7 +62,8 @@ public class LoginService {
 
         String validation = token.substring(7);
         if(jwtUtils.validateJwt(validation)) {
-            User user = loginRepository.findById(34442L).get();
+            int userId = (int) Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(validation).getBody().get("userId");
+            Optional<User> user = loginRepository.findById(userId);
             apiResponse.setData(user);
             apiResponse.setMessage("Data fetched successfully");
         }else{

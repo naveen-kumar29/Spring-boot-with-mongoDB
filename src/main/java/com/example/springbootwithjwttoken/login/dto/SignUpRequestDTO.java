@@ -1,7 +1,7 @@
 package com.example.springbootwithjwttoken.login.dto;
 
 public class SignUpRequestDTO {
-    private Long id;
+    private int id;
     private String name;
     private String gender;
     private String emailId;
@@ -49,11 +49,11 @@ public class SignUpRequestDTO {
         this.name = name;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
